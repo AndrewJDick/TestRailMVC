@@ -1,0 +1,34 @@
+// Inverted Triangle CSS (ITCSS)
+@import 'variables';
+
+
+// SETTINGS
+// Examples of global settings might be things like the base font size, colour palettes, config
+
+
+// TOOLS
+//The next layer houses your globally available tooling – namely mixins and functions.
+@import 'tools/tools.functions';
+@import 'tools/tools.mixins';
+
+
+// GENERIC
+// This layer is seldom modified. It contains things like Normalize.css, global box-sizing rules, CSS resets and so on.
+@import 'generic/generic.normalize';
+
+
+// BASE
+// The Base layer binds onto bare HTML element (or 'type') selectors only.
+
+
+// OBJECTS
+// This is the first layer in which we find class-based selectors. These are concerned with styling non-cosmetic design patterns, or 'objects'.
+
+
+// COMPONENTS
+// This layer styles explicit, designed pieces of the DOM. We shouldn't find any selectors with a lower specificity than one class in this layer.
+
+
+// TRUMPS
+// This layer contains utility and helper classes, hacks and overrides. A lot of the declarations in this layer will carry !important
+@import 'trumps/trumps.helpers';
