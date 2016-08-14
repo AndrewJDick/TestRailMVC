@@ -188,6 +188,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\main.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -195,6 +197,16 @@
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="Content\scss\generic\_generic.normalize.scss" />
+    <Content Include="Content\scss\main.scss" />
+    <Content Include="Content\scss\tools\_tools.functions.scss" />
+    <Content Include="Content\scss\tools\_tools.mixins.scss" />
+    <Content Include="Content\scss\trumps\_trumps.helpers.scss" />
+    <Content Include="Content\scss\_vars.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -240,12 +252,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Styles\generic\_generic.normalize.scss" />
-    <Content Include="Styles\main.scss" />
-    <Content Include="Styles\tools\_tools.functions.scss" />
-    <Content Include="Styles\tools\_tools.mixins.scss" />
-    <Content Include="Styles\trumps\_trumps.helpers.scss" />
-    <Content Include="Styles\_vars.scss" />
     <Content Include="Views\Home\CreateProject.cshtml" />
     <Content Include="Views\Home\Project.cshtml" />
     <Content Include="Views\Home\CreateTestCase.cshtml" />
@@ -256,10 +262,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Styles\components\" />
-    <Folder Include="Styles\elements\" />
-    <Folder Include="Styles\objects\" />
-    <Folder Include="Styles\settings\" />
+    <Folder Include="Content\scss\components\" />
+    <Folder Include="Content\scss\elements\" />
+    <Folder Include="Content\scss\objects\" />
+    <Folder Include="Content\scss\settings\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -303,11 +309,13 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\BuildWebCompiler.1.11.319\build\BuildWebCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildWebCompiler.1.11.319\build\BuildWebCompiler.targets'))" />
   </Target>
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\BuildWebCompiler.1.11.319\build\BuildWebCompiler.targets" Condition="Exists('..\packages\BuildWebCompiler.1.11.319\build\BuildWebCompiler.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
