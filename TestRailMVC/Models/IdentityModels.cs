@@ -22,8 +22,6 @@ namespace TestRailMVC.Models
     {
         DbSet<User> Users { get; set; }
         DbSet<Project> Projects { get; set; }
-        DbSet<Milestone> Milestones { get; set; }
-        DbSet<TestRun> TestRuns { get; set; }
         DbSet<TestCase> TestCases { get; set;}
 
         public ApplicationDbContext()

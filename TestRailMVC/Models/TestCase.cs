@@ -39,9 +39,5 @@ namespace TestRailMVC.Models
         [Display(Name = "Comment")]
         [DataType(DataType.MultilineText)]
         public string Comment { get; set; }
-
-        [Display(Name = "Test Run")]
-        [DataType(DataType.Text)]
-        public TestRun TestRun { get; set; }
     }
 }

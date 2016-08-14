@@ -16,6 +16,7 @@
 // This layer is seldom modified. It contains things like Normalize.css, global box-sizing rules, CSS resets and so on.
 @import 'generic/generic.normalize';
 @import 'generic/generic.box-sizing';
+@import 'generic/generic.wrapper';
 
 
 // ELEMENTS
@@ -35,7 +36,6 @@
 
 // COMPONENTS
 // This layer styles explicit, designed pieces of the DOM. We shouldn't find any selectors with a lower specificity than one class in this layer.
-
 
 // TRUMPS
 // This layer contains utility and helper classes, hacks and overrides. A lot of the declarations in this layer will carry !important

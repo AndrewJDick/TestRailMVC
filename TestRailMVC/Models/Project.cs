@@ -11,18 +11,20 @@ namespace TestRailMVC.Models
     public class Project
     {
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        [Required]
         public int Id { get; set; }
+
+        [Display(Name = "Name")]
+        [DataType(DataType.Text)]
+        [Required]
+        public string Name { get; set; }
 
         [Display(Name = "Project Code")]
         [DataType(DataType.Text)]
+        [Required]
         public string Code { get; set; }
 
-        [Display(Name = "Project Name")]
-        [DataType(DataType.Text)]
-        public string Name { get; set; }
-
-        public virtual List<User> Users { get; set; }
+        [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
+        public string Description { get; set; }
     }
 }

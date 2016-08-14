@@ -12,7 +12,6 @@ namespace TestRailMVC.Models
     {   
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        [Required]
         public int Id { get; set; }
 
         [Display(Name = "Forename")]
@@ -25,13 +24,7 @@ namespace TestRailMVC.Models
 
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
-        [Required]
         public string Email { get; set; }
-
-        [Display(Name = "Password")]
-        [DataType(DataType.Password)]
-        [Required]
-        public string Password { get; set; }
 
         public virtual List<Project> Projects { get; set; }
     }

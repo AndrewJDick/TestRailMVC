@@ -39,17 +39,17 @@
         </div>
     </div>
     <div class="container body-content">
-        <header>
+        <header class="wrapper">
             <h1> Entity Framework Demo </h1>
         </header>
         
         <main style="min-height: 600px;">
             <div class="col-md-9">
-                <div class="row page__title">
-                    <h2> Project Dashboard </h2>
+                <div class="row page__title wrapper">
+                    @Html.Partial("_PageTitlePartial")
                 </div> 
                 
-                <div class="row">
+                <div class="row wrapper">
                     @RenderBody()
                 </div>
             </div>
