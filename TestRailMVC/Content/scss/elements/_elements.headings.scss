@@ -1,0 +1,11 @@
+﻿h1 {
+    color: $white; 
+    margin: calculate-rem(40px) 0; 
+    padding: 0 calculate-rem(20px);
+}
+
+h2 {
+    color: $black;
+    margin: calculate-rem(20px) 0;
+    padding: 0 calculate-rem(20px); 
+}

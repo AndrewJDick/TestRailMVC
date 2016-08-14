@@ -190,6 +190,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\main.min.css" />
+    <None Include="Content\scss\objects\_objects.footer.scss" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -207,6 +208,13 @@
     <Content Include="Content\scss\tools\_tools.mixins.scss" />
     <Content Include="Content\scss\trumps\_trumps.helpers.scss" />
     <Content Include="Content\scss\_vars.scss" />
+    <Content Include="Content\scss\elements\_elements.header.scss" />
+    <Content Include="Content\scss\elements\_elements.headings.scss" />
+    <Content Include="Content\scss\objects\_objects.page.scss" />
+    <Content Include="Content\scss\generic\_generic.box-sizing.scss" />
+    <Content Include="Content\scss\elements\_elements.sidebar.scss" />
+    <Content Include="Content\scss\elements\_elements.main.scss" />
+    <Content Include="Content\scss\elements\_elements.footer.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -263,8 +271,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\scss\components\" />
-    <Folder Include="Content\scss\elements\" />
-    <Folder Include="Content\scss\objects\" />
     <Folder Include="Content\scss\settings\" />
   </ItemGroup>
   <ItemGroup>

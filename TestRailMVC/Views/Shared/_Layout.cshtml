@@ -38,28 +38,29 @@
             </div>
         </div>
     </div>
-    <div class="container body-content foo">
-        <header class="header" style="height: 100px; background-color: #4388CC;">
-            <h1 style="color: white; margin-top: 0; padding-top: 60px;"> Entity Framework Demo </h1>
+    <div class="container body-content">
+        <header>
+            <h1> Entity Framework Demo </h1>
         </header>
         
-        <main>
-            <div class="col-md-9" style="min-height: 600px;">
-                <div class="row" style="background-color:gray; height: 50px;">
-                    <h2 style="margin-top: 0;"> Project Dashboard </h2>
+        <main style="min-height: 600px;">
+            <div class="col-md-9">
+                <div class="row page__title">
+                    <h2> Project Dashboard </h2>
                 </div> 
                 
                 <div class="row">
                     @RenderBody()
                 </div>
             </div>
-            <div class="col-md-3" style="min-height: 600px; background-color:lightgray;">
+            
+            <aside class="col-md-3">
                 @Html.Partial("_SidebarPartial")
-            </div>
+            </aside>
         </main>
 
-        <footer style="height: 50px; background-color: black; clear: both;">
-            <p style="text-align: center; color: white;">&copy; @DateTime.Now.Year - TestRail</p>
+        <footer>
+            <p class="footer__copy">&copy; @DateTime.Now.Year - TestRail</p>
         </footer>
     </div>
 

@@ -1,11 +1,9 @@
-
-
 // Inverted Triangle CSS (ITCSS)
-@import 'vars';
 
 
 // SETTINGS
 // Examples of global settings might be things like the base font size, colour palettes, config
+@import 'vars';
 
 
 // TOOLS
@@ -17,14 +15,22 @@
 // GENERIC
 // This layer is seldom modified. It contains things like Normalize.css, global box-sizing rules, CSS resets and so on.
 @import 'generic/generic.normalize';
+@import 'generic/generic.box-sizing';
 
 
-// BASE
-// The Base layer binds onto bare HTML element (or 'type') selectors only.
+// ELEMENTS
+// The elements layer binds onto bare HTML element (or 'type') selectors only.
+@import 'elements/elements.header';
+@import 'elements/elements.headings';
+@import 'elements/elements.sidebar';
+@import 'elements/elements.main';
+@import 'elements/elements.footer';
 
 
 // OBJECTS
 // This is the first layer in which we find class-based selectors. These are concerned with styling non-cosmetic design patterns, or 'objects'.
+@import 'objects/objects.page';
+@import 'objects/objects.footer';
 
 
 // COMPONENTS

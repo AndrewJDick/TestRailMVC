@@ -365,6 +365,53 @@ textarea {
   font: inherit;
   /* 2 */ }
 
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+header {
+  align-items: center;
+  background-color: #4388CC;
+  display: flex;
+  margin: 0; }
+
+h1 {
+  color: #fff;
+  margin: 2.5rem 0;
+  padding: 0 1.25rem; }
+
+h2 {
+  color: #000;
+  margin: 1.25rem 0;
+  padding: 0 1.25rem; }
+
+aside {
+  background-color: #999; }
+
+main {
+  border-left: 0.0625rem solid #000;
+  display: flex;
+  align-items: stretch; }
+
+footer {
+  align-items: center;
+  background-color: #000;
+  justify-content: center;
+  display: flex; }
+
+.page__title {
+  align-items: center;
+  background-color: #555;
+  display: flex; }
+
+.footer__copy {
+  color: #fff;
+  margin: 0;
+  padding: 1.25rem 0; }
+
 
 .left {
   float: left; }
