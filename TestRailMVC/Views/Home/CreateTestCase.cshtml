@@ -36,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Precondition, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Precondition, new { htmlAttributes = new { @class = "form-control form__field--fullwidth" } })
+                @Html.EditorFor(model => model.Precondition, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Precondition, "", new { @class = "text-danger" })
             </div>
         </div>

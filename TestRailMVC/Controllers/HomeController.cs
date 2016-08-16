@@ -15,14 +15,14 @@ namespace TestRailMVC.Controllers
 
         public ActionResult CreateProject()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Create a project form.";
 
             return View();
         }
 
         public ActionResult CreateTestCase()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Create a Test Case form.";
 
             return View();
         }

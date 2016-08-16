@@ -11,6 +11,7 @@ namespace TestRailMVC.Models
     public class Project
     {
         [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Display(Name = "Name")]
@@ -21,10 +22,12 @@ namespace TestRailMVC.Models
         [Display(Name = "Project Code")]
         [DataType(DataType.Text)]
         [Required]
-        public string Code { get; set; }
+        public string Code { get; set; }    
 
         [Display(Name = "Description")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+
+        public virtual List<Project> Projects { get; set; }
     }
 }
