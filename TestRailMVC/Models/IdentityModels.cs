@@ -20,9 +20,9 @@ namespace TestRailMVC.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        DbSet<User> Users { get; set; }
-        DbSet<Project> Projects { get; set; }
-        DbSet<TestCase> TestCases { get; set;}
+        public DbSet<User> Users { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<TestCase> TestCases { get; set;}
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
