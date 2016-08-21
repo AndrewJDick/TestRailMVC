@@ -4,93 +4,88 @@ namespace TestRailMVC.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using TestRailMVC.Models; // Added to access the project models.
+    using TestRailMVC.Models; // Added to access our model resources.
 
     internal sealed class Configuration : DbMigrationsConfiguration<TestRailMVC.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "TestRailMVC.Models.ApplicationDbContext";
         }
 
         protected override void Seed(TestRailMVC.Models.ApplicationDbContext context)
         {
             context.Projects.AddOrUpdate(x => x.Id,
-                new Project()
-                {
+                new Project() {
                     Id = 1,
-                    Name = "Workspace Annual Report",
-                    Code = "241SB021",
-                    Description = "An annual report for the Workspace group, built using handlebars."
-                },
-                new Project()
-                {
-                    Id = 2,
                     Name = "WWF Endangered Emoji",
-                    Code = "256MM034",
-                    Description = "A landing page that allows users to sign up and tweet a series of emojis based on endangered animals"
+                    Code = "281MM134",
+                    Description = "Allows users to tweet a series of emoji associated based on endangered species."
                 },
-                new Project()
-                {
+                new Project() {
+                    Id = 2,
+                    Name = "Majestic Wine App",
+                    Code = "198RB001",
+                    Description = "A Xamarin-based app that allows customers to purchase wine"
+                },
+                new Project() {
                     Id = 3,
-                    Name = "Making Sense of Sugar",
-                    Code = "112MM027",
-                    Description = "A site that outlines the health risks of sugar, built using the Wordpress platform"
+                    Name = "Workspace Annual Report",
+                    Code = "341SB011",
+                    Description = "A digital annual report for the Workspace Group"
                 }
             );
 
             context.TestCases.AddOrUpdate(x => x.Id,
-                new TestCase()
-                {
+                new TestCase() {
                     Id = 1,
-                    Title = "Main logo returns to homepage on left mouse click",
-                    Priority = 1,
-                    Precondition = "",
-                    Step = "Left click on the main logo",
-                    Status = "Pass"
-                },
-                new TestCase()
-                {
-                    Id = 2,
-                    Title = "Clicking log out logs the user out of the application",
+                    Title = "Left clicking on the main logo redirects to homepage",
                     Priority = 2,
-                    Precondition = "Ensure user is logged in",
-                    Step = "Click the log out button on the top right corner of the page",
-                    Status = "Fail"
+                    Precondition = "",
+                    Step = "Left click on the main logo on any page",
+                    Status = "Pass",
+                    Comment = ""
                 },
-                new TestCase()
-                {
+                new TestCase() {
+                    Id = 2,
+                    Title = "Google map renders on the Where we Are page and shows the office location",
+                    Priority = 3,
+                    Precondition = "Some random precondition that I can't think of at this moment in time",
+                    Step = "Navigate to Where we are. Observe map.",
+                    Status = "Fail",
+                    Comment = "Map renders but the location is incorrect"
+                },
+                new TestCase() {
                     Id = 3,
-                    Title = "Footer logo centres on mobile view",
-                    Priority = 4,
-                    Precondition = "Must be viewing on a mobile device.",
-                    Step = "Load the page. Inspect the footer.",
-                    Status = ""
+                    Title = "Custom fonts display correctly",
+                    Priority = 5,
+                    Precondition = "",
+                    Step = "",
+                    Status = "",
+                    Comment = ""
                 }
             );
 
             context.Users.AddOrUpdate(x => x.Id,
-                new User()
-                {
+                new User() {
                     Id = 1,
-                    Forename = "Andrew",
-                    Surname = "Dick",
-                    Email = "andrew.dick@cohaesus.co.uk"
+                    Forename = "Richard",
+                    Surname = "Bundock",
+                    Email = "richard.bundock@cohaesus.co.uk"
                 },
                 new User()
                 {
                     Id = 2,
-                    Forename = "Matt",
-                    Surname = "Meckes",
-                    Email = "matt.meckes@cohaesus.co.uk"
+                    Forename = "Phil",
+                    Surname = "Beaman",
+                    Email = "philip.beaman@cohaesus.co.uk"
                 },
                 new User()
                 {
                     Id = 3,
-                    Forename = "Philip",
-                    Surname = "Beaman",
-                    Email = "philip.beaman@cohaesus.co.uk"
+                    Forename = "Matt",
+                    Surname = "Meckes",
+                    Email = "matt.meckes@cohaesus.co.uk"
                 }
             );
         }

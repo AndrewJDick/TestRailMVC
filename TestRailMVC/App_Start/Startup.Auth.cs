@@ -58,11 +58,11 @@ namespace TestRailMVC
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "376413259067-f5q1id7je8tn1oh9r4qr9ovpplat0ari.apps.googleusercontent.com",
+                ClientSecret = "Ry8L9hP7DEyJ9dTYBDRbCFzy"
+            });
         }
     }
 }
