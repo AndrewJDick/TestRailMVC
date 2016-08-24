@@ -367,7 +367,13 @@ namespace TestRailMVC.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new User
+                {
+                    UserName = model.Forename + ' ' + model.Surname,
+                    Email = model.Email,
+                    Forename = model.Forename,
+                    Surname = model.Surname
+                };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

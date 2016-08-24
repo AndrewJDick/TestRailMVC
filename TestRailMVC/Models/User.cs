@@ -8,24 +8,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TestRailMVC.Models
 {
-    public class User
-    {   
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
+    // User inherits from ApplicationUser then adds Forename and Surname fields
+    public class User : ApplicationUser
+    {
         [Display(Name = "Forename")]
         [DataType(DataType.Text)]
+        [Required]
         public string Forename { get; set; }
 
         [Display(Name = "Surname")]
         [DataType(DataType.Text)]
+        [Required]
         public string Surname { get; set; }
-
-        [Display(Name = "Email")]
-        [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
-
-        public virtual List<Project> Projects { get; set; }
     }
 }

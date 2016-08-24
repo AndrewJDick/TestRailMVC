@@ -1,8 +1,10 @@
 namespace TestRailMVC.Migrations
 {
+    using Microsoft.AspNet.Identity;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Data.Entity.Validation;
     using System.Linq;
     using TestRailMVC.Models; // Added to access our model resources.
 
@@ -37,7 +39,8 @@ namespace TestRailMVC.Migrations
             );
 
             context.TestCases.AddOrUpdate(x => x.Id,
-                new TestCase() {
+                new TestCase()
+                {
                     Id = 1,
                     Title = "Left clicking on the main logo redirects to homepage",
                     Priority = 2,
@@ -46,7 +49,8 @@ namespace TestRailMVC.Migrations
                     Status = "Pass",
                     Comment = ""
                 },
-                new TestCase() {
+                new TestCase()
+                {
                     Id = 2,
                     Title = "Google map renders on the Where we Are page and shows the office location",
                     Priority = 3,
@@ -55,7 +59,8 @@ namespace TestRailMVC.Migrations
                     Status = "Fail",
                     Comment = "Map renders but the location is incorrect"
                 },
-                new TestCase() {
+                new TestCase()
+                {
                     Id = 3,
                     Title = "Custom fonts display correctly",
                     Priority = 5,
@@ -66,26 +71,30 @@ namespace TestRailMVC.Migrations
                 }
             );
 
-            context.Users.AddOrUpdate(x => x.Id,
-                new User() {
-                    Id = 1,
+            context.Users.AddOrUpdate(x => x.Id, 
+                new User()
+                {
+                    Id = "1",
                     Forename = "Richard",
                     Surname = "Bundock",
-                    Email = "richard.bundock@cohaesus.co.uk"
+                    Email = "richard.bundock@cohaesus.co.uk",
+                    UserName = "Richard Bundock"
                 },
                 new User()
                 {
-                    Id = 2,
+                    Id = "2",
                     Forename = "Phil",
                     Surname = "Beaman",
-                    Email = "philip.beaman@cohaesus.co.uk"
+                    Email = "philip.beaman@cohaesus.co.uk",
+                    UserName = "Phil Beaman"
                 },
                 new User()
                 {
-                    Id = 3,
+                    Id = "3",
                     Forename = "Matt",
                     Surname = "Meckes",
-                    Email = "matt.meckes@cohaesus.co.uk"
+                    Email = "matt.meckes@cohaesus.co.uk",
+                    UserName = "Matt Meckes"
                 }
             );
         }

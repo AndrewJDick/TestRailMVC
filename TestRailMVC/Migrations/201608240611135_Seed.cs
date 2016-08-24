@@ -3,7 +3,7 @@ namespace TestRailMVC.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Seed : DbMigration
     {
         public override void Up()
         {
@@ -16,13 +16,10 @@ namespace TestRailMVC.Migrations
                         Code = c.String(nullable: false),
                         Description = c.String(),
                         Project_Id = c.Int(),
-                        User_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Projects", t => t.Project_Id)
-                .ForeignKey("dbo.Users", t => t.User_Id)
-                .Index(t => t.Project_Id)
-                .Index(t => t.User_Id);
+                .Index(t => t.Project_Id);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -62,21 +59,12 @@ namespace TestRailMVC.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Users",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Forename = c.String(),
-                        Surname = c.String(),
-                        Email = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.AspNetUsers",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        Forename = c.String(nullable: false),
+                        Surname = c.String(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -124,7 +112,6 @@ namespace TestRailMVC.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Projects", "User_Id", "dbo.Users");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Projects", "Project_Id", "dbo.Projects");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
@@ -133,12 +120,10 @@ namespace TestRailMVC.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Projects", new[] { "User_Id" });
             DropIndex("dbo.Projects", new[] { "Project_Id" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
-            DropTable("dbo.Users");
             DropTable("dbo.TestCases");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");

@@ -8,6 +8,14 @@ namespace TestRailMVC.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Forename")]
+        public string Forename { get; set; }
+
+        [Required]
+        [Display(Name = "Surname")]
+        public string Surname { get; set; }
     }
 
     public class ExternalLoginListViewModel
