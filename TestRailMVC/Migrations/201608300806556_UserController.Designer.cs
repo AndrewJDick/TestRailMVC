@@ -7,13 +7,13 @@ namespace TestRailMVC.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Seed : IMigrationMetadata
+    public sealed partial class UserController : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Seed));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UserController));
         
         string IMigrationMetadata.Id
         {
-            get { return "201608300630407_Seed"; }
+            get { return "201608300806556_UserController"; }
         }
         
         string IMigrationMetadata.Source

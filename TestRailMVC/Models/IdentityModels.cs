@@ -32,5 +32,7 @@ namespace TestRailMVC.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<TestRailMVC.Models.User> ApplicationUsers { get; set; }
     }
 }

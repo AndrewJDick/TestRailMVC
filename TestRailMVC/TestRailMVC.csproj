@@ -172,12 +172,17 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608300630407_Seed.cs" />
-    <Compile Include="Migrations\201608300630407_Seed.Designer.cs">
-      <DependentUpon>201608300630407_Seed.cs</DependentUpon>
+    <Compile Include="Migrations\201608300759442_Seed.cs" />
+    <Compile Include="Migrations\201608300759442_Seed.Designer.cs">
+      <DependentUpon>201608300759442_Seed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608300806556_UserController.cs" />
+    <Compile Include="Migrations\201608300806556_UserController.Designer.cs">
+      <DependentUpon>201608300806556_UserController.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -291,6 +296,11 @@
     <Content Include="Views\Home\CreateTestCase.cshtml" />
     <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.0.min.map" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -302,8 +312,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608300630407_Seed.resx">
-      <DependentUpon>201608300630407_Seed.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608300759442_Seed.resx">
+      <DependentUpon>201608300759442_Seed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608300806556_UserController.resx">
+      <DependentUpon>201608300806556_UserController.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
