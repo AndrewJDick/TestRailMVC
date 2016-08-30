@@ -18,7 +18,7 @@ namespace TestRailMVC.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Project> Projects { get; set; }
         public DbSet<TestCase> TestCases { get; set;}

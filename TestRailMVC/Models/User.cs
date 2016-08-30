@@ -8,7 +8,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TestRailMVC.Models
 {
-    // User inherits from ApplicationUser then adds Forename and Surname fields
     public class User : ApplicationUser
     {
         [Display(Name = "Forename")]
@@ -20,5 +19,8 @@ namespace TestRailMVC.Models
         [DataType(DataType.Text)]
         [Required]
         public string Surname { get; set; }
+
+        // Many to Many relationship with Projects
+        public virtual List<Project> Projects { get; set; }
     }
 }

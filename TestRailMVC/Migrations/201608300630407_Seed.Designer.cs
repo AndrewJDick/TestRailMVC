@@ -13,7 +13,7 @@ namespace TestRailMVC.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201608240611135_Seed"; }
+            get { return "201608300630407_Seed"; }
         }
         
         string IMigrationMetadata.Source

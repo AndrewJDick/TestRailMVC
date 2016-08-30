@@ -28,6 +28,10 @@ namespace TestRailMVC.Models
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        public virtual List<Project> Projects { get; set; }
+        // Many to Many relationship with Users
+        public virtual List<User> Users { get; set; }
+
+        // One to Many relationship with TestCases
+        public virtual List<TestCase> TestCases { get; set; }
     }
 }
