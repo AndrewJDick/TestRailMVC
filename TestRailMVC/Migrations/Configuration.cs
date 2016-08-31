@@ -18,19 +18,22 @@ namespace TestRailMVC.Migrations
         protected override void Seed(TestRailMVC.Models.ApplicationDbContext context)
         {
             context.Projects.AddOrUpdate(x => x.Id,
-                new Project() {
+                new Project()
+                {
                     Id = 1,
                     Name = "WWF Endangered Emoji",
                     Code = "281MM134",
                     Description = "Allows users to tweet a series of emoji associated based on endangered species."
                 },
-                new Project() {
+                new Project()
+                {
                     Id = 2,
                     Name = "Majestic Wine App",
                     Code = "198RB001",
                     Description = "A Xamarin-based app that allows customers to purchase wine"
                 },
-                new Project() {
+                new Project()
+                {
                     Id = 3,
                     Name = "Workspace Annual Report",
                     Code = "341SB011",
@@ -71,8 +74,8 @@ namespace TestRailMVC.Migrations
                 }
             );
 
-            context.Users.AddOrUpdate(x => x.Id, 
-                new User()
+            context.Users.AddOrUpdate(x => x.Id,
+                new ApplicationUser()
                 {
                     Id = "1",
                     Forename = "Richard",
@@ -80,7 +83,7 @@ namespace TestRailMVC.Migrations
                     Email = "richard.bundock@cohaesus.co.uk",
                     UserName = "Richard Bundock"
                 },
-                new User()
+                new ApplicationUser()
                 {
                     Id = "2",
                     Forename = "Phil",
@@ -88,7 +91,7 @@ namespace TestRailMVC.Migrations
                     Email = "philip.beaman@cohaesus.co.uk",
                     UserName = "Phil Beaman"
                 },
-                new User()
+                new ApplicationUser()
                 {
                     Id = "3",
                     Forename = "Matt",

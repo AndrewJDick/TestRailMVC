@@ -367,7 +367,7 @@ namespace TestRailMVC.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new User
+                var user = new ApplicationUser
                 {
                     UserName = model.Forename + ' ' + model.Surname,
                     Email = model.Email,

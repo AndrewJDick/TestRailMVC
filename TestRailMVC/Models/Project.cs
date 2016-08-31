@@ -29,7 +29,7 @@ namespace TestRailMVC.Models
         public string Description { get; set; }
 
         // Many to Many relationship with Users
-        public virtual List<User> Users { get; set; }
+        public virtual List<ApplicationUser> Users { get; set; }
 
         // One to Many relationship with TestCases
         public virtual List<TestCase> TestCases { get; set; }

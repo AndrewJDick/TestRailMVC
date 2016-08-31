@@ -1,4 +1,7 @@
 ﻿using System.Data.Entity;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -9,6 +12,19 @@ namespace TestRailMVC.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        [Display(Name = "Forename")]
+        [DataType(DataType.Text)]
+        [Required]
+        public string Forename { get; set; }
+
+        [Display(Name = "Surname")]
+        [DataType(DataType.Text)]
+        [Required]
+        public string Surname { get; set; }
+
+        // Many to Many relationship with Projects
+        public virtual List<Project> Projects { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -20,11 +36,13 @@ namespace TestRailMVC.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        // public ApplicationUser CurrentUser { get { return Users.Find("Get user id"); } }
+
         public DbSet<Project> Projects { get; set; }
         public DbSet<TestCase> TestCases { get; set;}
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ApplicationDbContext", throwIfV1Schema: false)
         {
         }
 
@@ -32,7 +50,5 @@ namespace TestRailMVC.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<TestRailMVC.Models.User> ApplicationUsers { get; set; }
     }
 }

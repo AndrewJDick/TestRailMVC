@@ -1,14 +1,13 @@
-﻿@model TestRailMVC.Models.User
+﻿@model TestRailMVC.Models.ApplicationUser
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Details";
 }
 
-<h2>Delete</h2>
+<h2>Details</h2>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>User</h4>
+    <h4>ApplicationUser</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -99,30 +98,9 @@
             @Html.DisplayFor(model => model.UserName)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Forename)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Forename)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Surname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Surname)
-        </dd>
-
     </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

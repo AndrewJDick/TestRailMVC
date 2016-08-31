@@ -3,7 +3,7 @@ namespace TestRailMVC.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Seed : DbMigration
+    public partial class seed : DbMigration
     {
         public override void Up()
         {
@@ -40,6 +40,8 @@ namespace TestRailMVC.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        Forename = c.String(nullable: false),
+                        Surname = c.String(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -51,9 +53,6 @@ namespace TestRailMVC.Migrations
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
                         UserName = c.String(nullable: false, maxLength: 256),
-                        Forename = c.String(),
-                        Surname = c.String(),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.UserName, unique: true, name: "UserNameIndex");
@@ -91,8 +90,8 @@ namespace TestRailMVC.Migrations
                         RoleId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
             
@@ -107,31 +106,31 @@ namespace TestRailMVC.Migrations
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
             CreateTable(
-                "dbo.UserProjects",
+                "dbo.ApplicationUserProjects",
                 c => new
                     {
-                        User_Id = c.String(nullable: false, maxLength: 128),
+                        ApplicationUser_Id = c.String(nullable: false, maxLength: 128),
                         Project_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.User_Id, t.Project_Id })
-                .ForeignKey("dbo.AspNetUsers", t => t.User_Id, cascadeDelete: true)
+                .PrimaryKey(t => new { t.ApplicationUser_Id, t.Project_Id })
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id, cascadeDelete: true)
                 .ForeignKey("dbo.Projects", t => t.Project_Id, cascadeDelete: true)
-                .Index(t => t.User_Id)
+                .Index(t => t.ApplicationUser_Id)
                 .Index(t => t.Project_Id);
             
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.ApplicationUserProjects", "Project_Id", "dbo.Projects");
+            DropForeignKey("dbo.ApplicationUserProjects", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.UserProjects", "Project_Id", "dbo.Projects");
-            DropForeignKey("dbo.UserProjects", "User_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.TestCases", "Project_Id", "dbo.Projects");
-            DropIndex("dbo.UserProjects", new[] { "Project_Id" });
-            DropIndex("dbo.UserProjects", new[] { "User_Id" });
+            DropIndex("dbo.ApplicationUserProjects", new[] { "Project_Id" });
+            DropIndex("dbo.ApplicationUserProjects", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
@@ -139,7 +138,7 @@ namespace TestRailMVC.Migrations
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.TestCases", new[] { "Project_Id" });
-            DropTable("dbo.UserProjects");
+            DropTable("dbo.ApplicationUserProjects");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
