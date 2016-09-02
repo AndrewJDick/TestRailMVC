@@ -173,12 +173,14 @@
     <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\TestCasesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608311511105_seed.cs" />
-    <Compile Include="Migrations\201608311511105_seed.Designer.cs">
-      <DependentUpon>201608311511105_seed.cs</DependentUpon>
+    <Compile Include="Migrations\201609021049045_seed.cs" />
+    <Compile Include="Migrations\201609021049045_seed.Designer.cs">
+      <DependentUpon>201609021049045_seed.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -295,6 +297,16 @@
     <Content Include="Views\ApplicationUsers\Details.cshtml" />
     <Content Include="Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Views\Projects\Create.cshtml" />
+    <Content Include="Views\Projects\Delete.cshtml" />
+    <Content Include="Views\Projects\Details.cshtml" />
+    <Content Include="Views\Projects\Edit.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\TestCases\Create.cshtml" />
+    <Content Include="Views\TestCases\Delete.cshtml" />
+    <Content Include="Views\TestCases\Details.cshtml" />
+    <Content Include="Views\TestCases\Edit.cshtml" />
+    <Content Include="Views\TestCases\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -306,8 +318,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608311511105_seed.resx">
-      <DependentUpon>201608311511105_seed.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609021049045_seed.resx">
+      <DependentUpon>201609021049045_seed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

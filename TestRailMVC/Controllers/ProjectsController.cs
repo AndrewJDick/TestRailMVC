@@ -12,107 +12,118 @@ using Microsoft.AspNet.Identity;
 
 namespace TestRailMVC.Controllers
 {
-    public class ApplicationUsersController : Controller
+    [Authorize]
+    public class ProjectsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        protected UserManager<ApplicationUser> UserManager { get; set; }
 
-        // GET: ApplicationUsers
+        // GET: Projects
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            if (User.Identity.IsAuthenticated)
+            {
+                //var userId = User.Identity.GetUserId();
+                //return View(db.Projects.ToList());
+                return View(db.TestCases.ToList());
+            }
+            else
+            {
+                return View(db.Projects.ToList());
+            }
         }
 
-        // GET: ApplicationUsers/Details/5
-        public ActionResult Details(string id)
+        // GET: Projects/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);
-            if (applicationUser == null)
+            Project project = db.Projects.Find(id);
+            if (project == null)
             {
                 return HttpNotFound();
             }
-            return View(applicationUser);
+            return View(project);
         }
 
-        // GET: ApplicationUsers/Create
+        // GET: Projects/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ApplicationUsers/Create
+        // POST: Projects/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
+        public ActionResult Create([Bind(Include = "Id,Name,Code,Description")] Project project)
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(applicationUser);
+                db.Projects.Add(project);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(applicationUser);
+            return View(project);
         }
 
-        // GET: ApplicationUsers/Edit/5
-        public ActionResult Edit(string id)
+        // GET: Projects/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);
-            if (applicationUser == null)
+            Project project = db.Projects.Find(id);
+            if (project == null)
             {
                 return HttpNotFound();
             }
-            return View(applicationUser);
+            return View(project);
         }
 
-        // POST: ApplicationUsers/Edit/5
+        // POST: Projects/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
+        public ActionResult Edit([Bind(Include = "Id,Name,Code,Description")] Project project)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(applicationUser).State = EntityState.Modified;
+                db.Entry(project).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(applicationUser);
+            return View(project);
         }
 
-        // GET: ApplicationUsers/Delete/5
-        public ActionResult Delete(string id)
+        // GET: Projects/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);
-            if (applicationUser == null)
+            Project project = db.Projects.Find(id);
+            if (project == null)
             {
                 return HttpNotFound();
             }
-            return View(applicationUser);
+            return View(project);
         }
 
-        // POST: ApplicationUsers/Delete/5
+        // POST: Projects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            ApplicationUser applicationUser = db.Users.Find(id);
-            db.Users.Remove(applicationUser);
+            Project project = db.Projects.Find(id);
+            db.Projects.Remove(project);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -7,112 +7,110 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TestRailMVC.Models;
-using Microsoft.AspNet.Identity;
-
 
 namespace TestRailMVC.Controllers
 {
-    public class ApplicationUsersController : Controller
+    public class TestCasesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: ApplicationUsers
+        // GET: TestCases
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(db.TestCases.ToList());
         }
 
-        // GET: ApplicationUsers/Details/5
-        public ActionResult Details(string id)
+        // GET: TestCases/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);
-            if (applicationUser == null)
+            TestCase testCase = db.TestCases.Find(id);
+            if (testCase == null)
             {
                 return HttpNotFound();
             }
-            return View(applicationUser);
+            return View(testCase);
         }
 
-        // GET: ApplicationUsers/Create
+        // GET: TestCases/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ApplicationUsers/Create
+        // POST: TestCases/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
+        public ActionResult Create([Bind(Include = "Id,Title,Priority,Precondition,Step,Status,Comment")] TestCase testCase)
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(applicationUser);
+                db.TestCases.Add(testCase);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(applicationUser);
+            return View(testCase);
         }
 
-        // GET: ApplicationUsers/Edit/5
-        public ActionResult Edit(string id)
+        // GET: TestCases/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);
-            if (applicationUser == null)
+            TestCase testCase = db.TestCases.Find(id);
+            if (testCase == null)
             {
                 return HttpNotFound();
             }
-            return View(applicationUser);
+            return View(testCase);
         }
 
-        // POST: ApplicationUsers/Edit/5
+        // POST: TestCases/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
+        public ActionResult Edit([Bind(Include = "Id,Title,Priority,Precondition,Step,Status,Comment")] TestCase testCase)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(applicationUser).State = EntityState.Modified;
+                db.Entry(testCase).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(applicationUser);
+            return View(testCase);
         }
 
-        // GET: ApplicationUsers/Delete/5
-        public ActionResult Delete(string id)
+        // GET: TestCases/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);
-            if (applicationUser == null)
+            TestCase testCase = db.TestCases.Find(id);
+            if (testCase == null)
             {
                 return HttpNotFound();
             }
-            return View(applicationUser);
+            return View(testCase);
         }
 
-        // POST: ApplicationUsers/Delete/5
+        // POST: TestCases/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            ApplicationUser applicationUser = db.Users.Find(id);
-            db.Users.Remove(applicationUser);
+            TestCase testCase = db.TestCases.Find(id);
+            db.TestCases.Remove(testCase);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

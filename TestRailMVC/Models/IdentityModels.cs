@@ -23,7 +23,7 @@ namespace TestRailMVC.Models
         public string Surname { get; set; }
 
         // Many to Many relationship with Projects
-        public virtual List<Project> Projects { get; set; }
+        public virtual List<Project> Projects { get; set; } 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
