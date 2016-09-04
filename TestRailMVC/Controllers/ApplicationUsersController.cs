@@ -19,7 +19,9 @@ namespace TestRailMVC.Controllers
         // GET: ApplicationUsers
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            var userId = User.Identity.GetUserId();
+
+            return View(db.Users.Where(x => x.Id == userId).ToList());
         }
 
         // GET: ApplicationUsers/Details/5

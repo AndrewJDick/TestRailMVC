@@ -47,6 +47,15 @@ namespace TestRailMVC.Migrations
                 UserName = "Matt Meckes"
             };
 
+            var u4 = new ApplicationUser()
+            {
+                Id = "bd65f43c-6045-45d9-93c9-60c516831629",
+                Forename = "Andrew",
+                Surname = "Dick",
+                Email = "andrew.dick@cohaesus.co.uk",
+                UserName = "Andrew Dick"
+            };
+
 
             var p1 = new Project()
             {
@@ -111,6 +120,7 @@ namespace TestRailMVC.Migrations
             u1.Projects = new List<Project>() { p1, p2, p3 };
             u2.Projects = new List<Project>() { p1, p2 };
             u3.Projects = new List<Project>() { p1 };
+            u4.Projects = new List<Project>() { p1, p2 };
 
             p1.TestCases = new List<TestCase>() { tc3 };
             p2.TestCases = new List<TestCase>() { tc1 };

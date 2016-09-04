@@ -18,19 +18,19 @@ namespace TestRailMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         protected UserManager<ApplicationUser> UserManager { get; set; }
 
+
         // GET: Projects
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                //var userId = User.Identity.GetUserId();
-                //return View(db.Projects.ToList());
-                return View(db.TestCases.ToList());
-            }
-            else
-            {
-                return View(db.Projects.ToList());
-            }
+            // Determine the user currently logged in 
+            var userId = User.Identity.GetUserId();
+
+            // Find the first user in the database's User table whose primary key matches the userID
+            var user = db.Users.First((u) => u.Id == userId);
+
+            // Return all Projects that the User has been added to
+            return View(user.Projects);
+
         }
 
         // GET: Projects/Details/5
@@ -59,10 +59,19 @@ namespace TestRailMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Code,Description")] Project project)
+        public ActionResult Create([Bind(Include = "Id,Name,Code,Description,Users")] Project project)
         {
             if (ModelState.IsValid)
             {
+                // Determine the user currently logged in 
+                var userId = User.Identity.GetUserId();
+
+                // Find the first user in the database's User table whose primary key matches the userID
+                var user = db.Users.First((u) => u.Id == userId);
+
+                // Automatically add the logged in user to the created project
+                user.Projects = new List<Project>() { project };
+
                 db.Projects.Add(project);
                 db.SaveChanges();
                 return RedirectToAction("Index");

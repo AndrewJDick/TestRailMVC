@@ -182,6 +182,18 @@
     <Compile Include="Migrations\201609021049045_seed.Designer.cs">
       <DependentUpon>201609021049045_seed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609021408316_user-defined-projects.cs" />
+    <Compile Include="Migrations\201609021408316_user-defined-projects.Designer.cs">
+      <DependentUpon>201609021408316_user-defined-projects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609021414359_added-user.cs" />
+    <Compile Include="Migrations\201609021414359_added-user.Designer.cs">
+      <DependentUpon>201609021414359_added-user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609021415437_added-user-project.cs" />
+    <Compile Include="Migrations\201609021415437_added-user-project.Designer.cs">
+      <DependentUpon>201609021415437_added-user-project.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -287,7 +299,6 @@
     <Content Include="Views\Home\TestCase.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Shared\_SidebarPartial.cshtml" />
-    <Content Include="Views\Shared\_PageTitlePartial.cshtml" />
     <Content Include="Views\Home\CreateProject.cshtml" />
     <Content Include="Views\Home\CreateTestCase.cshtml" />
     <Content Include="Scripts\jquery-3.1.0.slim.min.map" />
@@ -320,6 +331,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201609021049045_seed.resx">
       <DependentUpon>201609021049045_seed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609021408316_user-defined-projects.resx">
+      <DependentUpon>201609021408316_user-defined-projects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609021414359_added-user.resx">
+      <DependentUpon>201609021414359_added-user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609021415437_added-user-project.resx">
+      <DependentUpon>201609021415437_added-user-project.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
