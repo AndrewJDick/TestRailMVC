@@ -1,9 +1,11 @@
 ﻿h1 {    
     color: $white; 
+    font-size: calculate-rem(48px);
     margin: calculate-rem(40px) 0; 
 }
 
 h2 {
-    color: $black;
+    color: $white;
+    font-size: calculate-rem(36px);
     margin: calculate-rem(20px) 0;
 }

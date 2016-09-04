@@ -383,10 +383,12 @@ header {
 
 h1 {
   color: #fff;
+  font-size: 3rem;
   margin: 2.5rem 0; }
 
 h2 {
-  color: #000;
+  color: #fff;
+  font-size: 2.25rem;
   margin: 1.25rem 0; }
 
 aside {
@@ -411,7 +413,8 @@ footer {
 .page__title {
   align-items: center;
   background-color: #555;
-  display: flex; }
+  display: flex;
+  margin-bottom: 1.5625rem; }
 
 .footer__copy {
   color: #fff;

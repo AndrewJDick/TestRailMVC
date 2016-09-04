@@ -2,7 +2,8 @@
 
     &__title {
         align-items: center;
-        background-color: $grey-dark; 
+        background-color: $grey-dark;
         display: flex;
+        margin-bottom: calculate-rem($default-module-padding);
     }
 }
