@@ -33,6 +33,12 @@ namespace TestRailMVC.Controllers
 
         }
 
+        // GET: TestCases
+        public ActionResult TestCaseDetails()
+        {
+            return View("~/Views/TestCases/Details.cshtml");
+        }
+
         // GET: Projects/Details/5
         public ActionResult Details(int? id)
         {

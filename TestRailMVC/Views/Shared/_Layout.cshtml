@@ -22,18 +22,6 @@
             </div>
 
             <div class="navbar-collapse collapse">
-                @using Microsoft.AspNet.Identity
-                @if (Request.IsAuthenticated)
-                {
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index")</li>
-                        <li>@Html.ActionLink("Dashboard", "Dashboard")</li>
-                        <li>@Html.ActionLink("Create A Project", "CreateProject")</li>
-                        <li>@Html.ActionLink("Create A Test Case", "CreateTestCase")</li>
-                        <li>@Html.ActionLink("Users", "Users")</li>
-                    </ul>
-                }
-
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -60,7 +48,7 @@
         </main>
 
         <footer>
-            <p class="footer__copy">&copy; @DateTime.Now.Year - TestRail</p>
+            <p class="footer__copy">&copy; @DateTime.Now.Year - Cohaesus Projects Ltd</p>
         </footer>
     </div>
 

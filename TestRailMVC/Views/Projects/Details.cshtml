@@ -18,7 +18,7 @@
 </div>
 <div>
     <h4>Test Cases</h4>
-    <hr />
+    @Html.Partial("~/Views/TestCases/_ProjectTestCasesPartial.cshtml", ViewData.Model.TestCases)
 </div>   
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

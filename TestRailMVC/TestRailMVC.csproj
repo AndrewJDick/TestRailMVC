@@ -318,6 +318,7 @@
     <Content Include="Views\TestCases\Details.cshtml" />
     <Content Include="Views\TestCases\Edit.cshtml" />
     <Content Include="Views\TestCases\Index.cshtml" />
+    <Content Include="Views\TestCases\_ProjectTestCasesPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
