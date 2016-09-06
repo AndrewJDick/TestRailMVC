@@ -26,12 +26,14 @@
 @import 'elements/elements.sidebar';
 @import 'elements/elements.main';
 @import 'elements/elements.footer';
+@import 'elements/elements.links';
 
 
 // OBJECTS
 // This is the first layer in which we find class-based selectors. These are concerned with styling non-cosmetic design patterns, or 'objects'.
 @import 'objects/objects.page';
 @import 'objects/objects.footer';
+@import 'objects/objects.buttons';
 
 
 // COMPONENTS

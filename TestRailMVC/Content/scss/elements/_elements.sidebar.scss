@@ -1,3 +1,6 @@
-﻿aside {
+﻿aside {   
     background-color: $grey-light;
+    display: flex;
+    flex-direction: column;
+    padding: $default-module-padding;
 }

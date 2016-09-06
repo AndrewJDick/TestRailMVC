@@ -35,6 +35,11 @@ namespace TestRailMVC.Controllers
             return View(testCase);
         }
 
+        public ActionResult MyNextAction()
+        {
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
         // GET: TestCases/Create
         public ActionResult Create()
         {
@@ -84,9 +89,9 @@ namespace TestRailMVC.Controllers
             {
                 db.Entry(testCase).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Projects");
             }
-            return View(testCase);
+            return View(testCase.Project.Id);
         }
 
         // GET: TestCases/Delete/5

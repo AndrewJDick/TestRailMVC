@@ -392,7 +392,10 @@ h2 {
   margin: 1.25rem 0; }
 
 aside {
-  background-color: #999; }
+  background-color: #999;
+  display: flex;
+  flex-direction: column;
+  padding: 25px; }
 
 main {
   border-left: 0.0625rem solid #000;
@@ -410,6 +413,13 @@ footer {
   justify-content: center;
   display: flex; }
 
+a {
+  text-decoration: none;
+  color: #000; }
+  a:hover {
+    text-decoration: none;
+    font-weight: 400; }
+
 .page__title {
   align-items: center;
   background-color: #555;
@@ -420,6 +430,14 @@ footer {
   color: #fff;
   margin: 0;
   padding: 1.25rem 0; }
+
+.sidebar__button {
+  background: #999;
+  border: 0.0625rem #000 solid;
+  font-weight: bold;
+  margin: 0.9375rem 0;
+  padding: 25px;
+  width: 100%; }
 
 
 .left {
@@ -434,4 +452,10 @@ footer {
 
 .navbar-right {
   margin-right: 0; }
+
+.red {
+  color: #f00; }
+
+.txt-ctr {
+  text-align: center; }
 

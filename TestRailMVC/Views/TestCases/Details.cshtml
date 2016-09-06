@@ -3,21 +3,10 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
-
 <div>
-    <h4>TestCase</h4>
+    <h3>@Html.DisplayFor(model => model.Title)</h3>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Priority)
         </dt>
@@ -62,5 +51,6 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <!-- linkText, actionName, controllerName, routeValues, htmlAttributes -->
+    @Html.ActionLink("Return To Project", "Details", "Projects", new { id = Model.Project.Id}, null)
 </p>

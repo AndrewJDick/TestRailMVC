@@ -39,5 +39,8 @@ namespace TestRailMVC.Models
         [Display(Name = "Comment")]
         [DataType(DataType.MultilineText)]
         public string Comment { get; set; }
-    }
+
+        // One to many relationship with Project
+        public virtual Project Project { get; set; }
+    }         
 }

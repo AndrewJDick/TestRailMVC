@@ -194,6 +194,10 @@
     <Compile Include="Migrations\201609021415437_added-user-project.Designer.cs">
       <DependentUpon>201609021415437_added-user-project.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609051100337_updated-project-class.cs" />
+    <Compile Include="Migrations\201609051100337_updated-project-class.Designer.cs">
+      <DependentUpon>201609051100337_updated-project-class.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -215,6 +219,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\scss\elements\_elements.links.scss" />
+    <Content Include="Content\scss\objects\_objects.buttons.scss" />
     <None Include="Content\scss\objects\_objects.footer.scss" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -341,6 +347,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609021415437_added-user-project.resx">
       <DependentUpon>201609021415437_added-user-project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609051100337_updated-project-class.resx">
+      <DependentUpon>201609051100337_updated-project-class.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

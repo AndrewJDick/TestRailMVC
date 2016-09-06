@@ -1,8 +1,5 @@
 ﻿@model IEnumerable<TestRailMVC.Models.TestCase>
 
-<p>
-    @Html.ActionLink("Create New Test Case", "Controller")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -21,7 +18,8 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                <!-- linkText, actionName, controllerName, routeValues, htmlAttributes -->
+                @Html.ActionLink(item.Title, "Details", "TestCases", new { id = item.Id }, null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Priority)
@@ -30,9 +28,8 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "TestCaseDetails", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Edit", "Edit", "TestCases", new { id = item.Id }, null) | 
+                @Html.ActionLink("Delete", "Delete", "TestCases", new { id = item.Id }, new { @class = "red"})
             </td>
         </tr>
     }

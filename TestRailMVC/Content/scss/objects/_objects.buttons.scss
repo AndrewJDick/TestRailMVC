@@ -1,0 +1,12 @@
+﻿.sidebar {
+
+    &__button {
+        background: $grey-light;
+        border: calculate-rem(1px) $black solid;
+        font-weight: bold;
+        margin: calculate-rem(15px) 0;
+        padding: $default-module-padding;
+        width: 100%;
+    }
+}
+

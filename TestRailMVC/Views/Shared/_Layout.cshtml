@@ -43,7 +43,13 @@
             </div>
             
             <aside class="col-md-3">
-                @Html.Partial("_SidebarPartial")
+                <div>
+                    @RenderSection("SidebarProjectDashboard", required: false)
+                </div>
+
+                <div>
+                    @RenderSection("SidebarProjectDetails", required: false)
+                </div>
             </aside>
         </main>
 

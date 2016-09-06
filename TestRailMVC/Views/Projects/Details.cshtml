@@ -4,23 +4,21 @@
     ViewBag.Title = Html.DisplayFor(model => model.Code) + " " + Html.DisplayFor(model => model.Name);
 }
 
-<div>
-    <dl class="dl-horizontal jumbotron">
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-    </dl>
+<div class="jumbotron txt-ctr">
+    @Html.DisplayFor(model => model.Description)
 </div>
+
 <div>
-    <h4>Test Cases</h4>
+    <h3>Test Cases</h3>
     @Html.Partial("~/Views/TestCases/_ProjectTestCasesPartial.cshtml", ViewData.Model.TestCases)
 </div>   
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Return to Project Dashboard", "Index")
 </p>
+
+<!-- Sidebar Content -->
+@section SidebarProjectDashboard {
+    <button class="sidebar__button" onclick="location.href='@Url.Action("Create", "TestCases")'"> Create a TestCase </button>
+
+    <button class="sidebar__button" onclick="location.href='@Url.Action("Register", "Account")'"> Add a user </button>
+}
