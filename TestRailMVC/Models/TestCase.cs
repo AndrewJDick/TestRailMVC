@@ -21,7 +21,6 @@ namespace TestRailMVC.Models
         public string Title { get; set; }
 
         [Display(Name = "Priority")]
-        [RegularExpression("^[1-5]{1}$")]
         public int Priority { get; set; }
 
         [Display(Name = "Preconditions")]

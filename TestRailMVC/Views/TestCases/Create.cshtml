@@ -1,11 +1,51 @@
 ﻿@model TestRailMVC.Models.TestCase
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create a Test Case";
 }
 
-<h2>Create</h2>
+@{
+    List<SelectListItem> priority = new List<SelectListItem>();
+    priority.Add(new SelectListItem
+    {
+        Text = "1",
+        Value = "1",
+    });
+    priority.Add(new SelectListItem
+    {
+        Text = "2",
+        Value = "2"
+    });
+    priority.Add(new SelectListItem
+    {
+        Text = "3",
+        Value = "3"
+    });
+    priority.Add(new SelectListItem
+    {
+        Text = "4",
+        Value = "4"
+    });
+    priority.Add(new SelectListItem
+    {
+        Text = "5",
+        Value = "5"
+    });
+}
 
+@{
+    List<SelectListItem> status = new List<SelectListItem>();
+    status.Add(new SelectListItem
+    {
+        Text = "Pass",
+        Value = "Pass",
+    });
+    status.Add(new SelectListItem
+    {
+        Text = "Fail",
+        Value = "Fail"
+    });
+}
 
 @using (Html.BeginForm()) 
 {
@@ -26,7 +66,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Priority, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Priority, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.Priority, priority, "-", new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Priority, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -50,7 +90,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.Status, status, "-", new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
             </div>
         </div>

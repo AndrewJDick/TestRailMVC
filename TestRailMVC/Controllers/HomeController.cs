@@ -8,6 +8,8 @@ using System.Web.Mvc;
 namespace TestRailMVC.Controllers
 {
     [RequireHttps]
+    // Adding Authorize redirects users to login page if not logged in, and homepage if they are. 
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
