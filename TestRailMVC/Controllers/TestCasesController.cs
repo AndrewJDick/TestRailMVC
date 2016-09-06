@@ -41,8 +41,10 @@ namespace TestRailMVC.Controllers
         }
 
         // GET: TestCases/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            ViewBag.Project = id;
+
             return View();
         }
 
@@ -51,7 +53,7 @@ namespace TestRailMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Priority,Precondition,Step,Status,Comment")] TestCase testCase)
+        public ActionResult Create([Bind(Include = "Id,Title,Priority,Precondition,Step,Status,Comment,Project")] TestCase testCase)
         {
             if (ModelState.IsValid)
             {

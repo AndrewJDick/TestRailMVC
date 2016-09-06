@@ -18,7 +18,7 @@
 
 <!-- Sidebar Content -->
 @section SidebarProjectDashboard {
-    <button class="sidebar__button" onclick="location.href='@Url.Action("Create", "TestCases")'"> Create a TestCase </button>
+    <button class="sidebar__button" onclick="location.href='@Url.Action("Create", "TestCases", new { id = Model.Id })'"> Create a TestCase </button>
 
     <button class="sidebar__button" onclick="location.href='@Url.Action("Register", "Account")'"> Add a user </button>
 }
