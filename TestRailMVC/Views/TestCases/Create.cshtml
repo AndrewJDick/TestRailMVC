@@ -106,7 +106,7 @@
         <!-- Hidden field that accepts the controllers updated value -->
         <div class="form-group">
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.Id, new { htmlAttributes = new {@id = ViewBag.Project, @value = "ViewBag.Project" } })
+                @Html.Hidden("ProjectIdentifier", ViewData["ProjectId"])
             </div>
         </div>
 

@@ -42,8 +42,11 @@ namespace TestRailMVC.Controllers
 
         // GET: TestCases/Create
         public ActionResult Create(int? id)
-        {
-            ViewBag.Project = id;
+        {   
+            var projectId = id;
+
+            // Passes the Project Id to the TestCase Create view
+            ViewData["ProjectId"] = projectId;
 
             return View();
         }
@@ -53,11 +56,19 @@ namespace TestRailMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Priority,Precondition,Step,Status,Comment,Project")] TestCase testCase)
+        public ActionResult Create([Bind(Include = "Id,Title,Priority,Precondition,Step,Status,Comment")] TestCase testCase, int ProjectIdentifier)
         {
             if (ModelState.IsValid)
             {
-                db.TestCases.Add(testCase);
+                // Determine the project id where the test case was created
+                var projectId = ProjectIdentifier;
+
+                // Find the first project in the database's Projects table whose primary key matches the projectID
+                var project = db.Projects.First((p) => p.Id == projectId);
+
+                // Add the newly-created test case to the project
+                project.TestCases.Add(testCase);
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
