@@ -70,7 +70,7 @@ namespace TestRailMVC.Controllers
                 project.TestCases.Add(testCase);
 
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Projects", new { id = ProjectIdentifier });
             }
 
             return View(testCase);
@@ -102,6 +102,7 @@ namespace TestRailMVC.Controllers
             {
                 db.Entry(testCase).State = EntityState.Modified;
                 db.SaveChanges();
+                // TODO - Redirect user to the project the test cases belongs to, rather than the dashboard.
                 return RedirectToAction("Index", "Projects");
             }
             return View(testCase.Project.Id);

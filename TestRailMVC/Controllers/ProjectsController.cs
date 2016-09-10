@@ -18,6 +18,23 @@ namespace TestRailMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         protected UserManager<ApplicationUser> UserManager { get; set; }
 
+        // Determine whether User belongs to a Project
+        private bool IsUserAssignedToProject(int? id, Project project)
+        {
+            // Retrieve the current User
+            var userId = User.Identity.GetUserId();
+            ApplicationUser user = db.Users.Find(userId);
+
+            // Determine whether a user belongs to a project
+            if (user.Projects.Contains(project))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         // GET: Projects
         public ActionResult Index()
@@ -40,12 +57,23 @@ namespace TestRailMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Project project = db.Projects.Find(id);
+
             if (project == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+
+
+            if (IsUserAssignedToProject(id, project))
+            {
+                return View(project);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
         }
 
         // GET: Projects/Create
@@ -92,7 +120,15 @@ namespace TestRailMVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(project);
+
+            if (IsUserAssignedToProject(id, project))
+            {
+                return View(project);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
         }
 
         // POST: Projects/Edit/5
@@ -123,7 +159,15 @@ namespace TestRailMVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(project);
+
+            if (IsUserAssignedToProject(id, project))
+            {
+                return View(project);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
         }
 
         // POST: Projects/Delete/5
