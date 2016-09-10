@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -13,6 +14,24 @@ namespace TestRailMVC.Controllers
     public class TestCasesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        // Determine whether User belongs to a Project
+        private bool IsUserAssignedToTestCase(TestCase testcase)
+        {
+            // Retrieve the current User
+            var userId = User.Identity.GetUserId();
+            ApplicationUser user = db.Users.Find(userId);
+
+            // Determine whether a user belongs to a project
+            if (testcase.Project.Users.Contains(user))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         // GET: TestCases
         public ActionResult Index()
@@ -32,7 +51,14 @@ namespace TestRailMVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(testCase);
+            if (IsUserAssignedToTestCase(testCase))
+            {
+                return View(testCase);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
         }
 
         public ActionResult MyNextAction()
@@ -88,7 +114,14 @@ namespace TestRailMVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(testCase);
+            if (IsUserAssignedToTestCase(testCase))
+            {
+                return View(testCase);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
         }
 
         // POST: TestCases/Edit/5
@@ -120,7 +153,14 @@ namespace TestRailMVC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(testCase);
+            if (IsUserAssignedToTestCase(testCase))
+            {
+                return View(testCase);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
         }
 
         // POST: TestCases/Delete/5

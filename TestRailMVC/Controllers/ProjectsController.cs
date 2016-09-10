@@ -19,7 +19,7 @@ namespace TestRailMVC.Controllers
         protected UserManager<ApplicationUser> UserManager { get; set; }
 
         // Determine whether User belongs to a Project
-        private bool IsUserAssignedToProject(int? id, Project project)
+        private bool IsUserAssignedToProject(Project project)
         {
             // Retrieve the current User
             var userId = User.Identity.GetUserId();
@@ -66,7 +66,7 @@ namespace TestRailMVC.Controllers
             }
 
 
-            if (IsUserAssignedToProject(id, project))
+            if (IsUserAssignedToProject(project))
             {
                 return View(project);
             }
@@ -121,7 +121,7 @@ namespace TestRailMVC.Controllers
                 return HttpNotFound();
             }
 
-            if (IsUserAssignedToProject(id, project))
+            if (IsUserAssignedToProject(project))
             {
                 return View(project);
             }
@@ -160,7 +160,7 @@ namespace TestRailMVC.Controllers
                 return HttpNotFound();
             }
 
-            if (IsUserAssignedToProject(id, project))
+            if (IsUserAssignedToProject(project))
             {
                 return View(project);
             }
