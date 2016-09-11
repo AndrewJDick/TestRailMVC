@@ -8,5 +8,11 @@
         padding: $default-module-padding;
         width: 100%;
     }
+
+    &__header {
+        background: $grey-dark;
+        padding: calculate-rem(20px);
+        margin: calculate-rem(30px) calculate-rem(-24px);
+    }
 }
 

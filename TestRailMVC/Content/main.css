@@ -439,6 +439,11 @@ a {
   padding: 25px;
   width: 100%; }
 
+.sidebar__header {
+  background: #555;
+  padding: 1.25rem;
+  margin: 1.875rem -1.5rem; }
+
 
 .left {
   float: left; }
