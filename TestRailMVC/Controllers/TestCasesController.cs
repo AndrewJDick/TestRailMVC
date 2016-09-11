@@ -15,14 +15,14 @@ namespace TestRailMVC.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // Determine whether User belongs to a Project
+        // Determine whether User belongs to a Project that contains the Test Case
         private bool IsUserAssignedToTestCase(TestCase testcase)
         {
             // Retrieve the current User
             var userId = User.Identity.GetUserId();
             ApplicationUser user = db.Users.Find(userId);
 
-            // Determine whether a user belongs to a project
+            // Determine whether a user belongs to a project that contains the test case
             if (testcase.Project.Users.Contains(user))
             {
                 return true;

@@ -17,20 +17,6 @@ namespace TestRailMVC.Controllers
             return View();
         }
 
-        public ActionResult CreateProject()
-        {
-            ViewBag.Message = "Create a project form.";
-
-            return View();
-        }
-
-        public ActionResult CreateTestCase()
-        {
-            ViewBag.Message = "Create a Test Case form.";
-
-            return View();
-        }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
