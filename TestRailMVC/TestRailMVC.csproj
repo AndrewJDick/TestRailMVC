@@ -320,6 +320,7 @@
     <Content Include="Views\TestCases\Edit.cshtml" />
     <Content Include="Views\TestCases\Index.cshtml" />
     <Content Include="Views\TestCases\_ProjectTestCasesPartial.cshtml" />
+    <Content Include="Views\ApplicationUsers\_ProjectUsersPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
