@@ -3,11 +3,6 @@
 @{
     ViewBag.Title = "Add a User";
 }
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
     <table class="table">
         <tr>
             <th>
@@ -24,33 +19,31 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Forename)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Surname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    <input type="submit" value="Add to Project" class="btn btn-default" />
-                </td>
-                <td>
-                    @Html.Hidden("UserIdentifier", item.Id)
-                </td>
-            </tr>
+            using (Html.BeginForm())
+            {
+
+                @Html.AntiForgeryToken()
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Forename)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        <input type="submit" value="Add to Project" class="btn btn-default" />
+                    </td>
+                    <td>
+                        @Html.Hidden("UserIdentifier", item.Id)
+                    </td>
+                    <td>
+                        @Html.Hidden("ProjectIdentifier", ViewData["ProjectId"])
+                    </td>
+                </tr>
+            }
         }
-    </table>
-        
-    <table>
-        <!-- Hidden row stores the projectId -->
-        <tr>
-            <td>
-                @Html.Hidden("ProjectIdentifier", ViewData["ProjectId"])
-            </td>
-        </tr>
-    </table>
-    
-}
+</table>
