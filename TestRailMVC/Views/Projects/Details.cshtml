@@ -20,7 +20,7 @@
 @section SidebarProjectDashboard {
     <button class="sidebar__button" onclick="location.href='@Url.Action("Create", "TestCases", new { id = Model.Id })'"> Create a TestCase </button>
 
-    <button class="sidebar__button" onclick="location.href='@Url.Action("Index", "ApplicationUsers")'"> Add a user </button>
+    <button class="sidebar__button" onclick="location.href='@Url.Action("Index", "ApplicationUsers", new { id = Model.Id })'"> Add a User </button>
 }
 
 @section SidebarProjectUsers {
