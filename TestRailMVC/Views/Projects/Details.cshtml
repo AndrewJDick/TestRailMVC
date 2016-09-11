@@ -25,5 +25,5 @@
 
 @section SidebarProjectUsers {
     <h2 class="sidebar__header">Users</h2>
-    @Html.Partial("~/Views/ApplicationUsers/_ProjectUsersPartial.cshtml")
+    @Html.Partial("~/Views/ApplicationUsers/_ProjectUsersPartial.cshtml", ViewData.Model.Users)
 }
