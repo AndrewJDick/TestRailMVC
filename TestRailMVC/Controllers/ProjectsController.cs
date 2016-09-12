@@ -53,6 +53,9 @@ namespace TestRailMVC.Controllers
         // GET: Projects/Details/5
         public ActionResult Details(int? id)
         {
+            // Passes the Project Id to the TestCase Create view
+            ViewData["ProjectId"] = id;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -189,5 +192,22 @@ namespace TestRailMVC.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // POST: RemoveUser
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RemoveUser(int ProjectIdentifier, string UserIdentifier)
+        {
+            Project project = db.Projects.Find(ProjectIdentifier);
+            ApplicationUser user = db.Users.Find(UserIdentifier);
+
+            project.Users.Remove(user);
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
     }
 }

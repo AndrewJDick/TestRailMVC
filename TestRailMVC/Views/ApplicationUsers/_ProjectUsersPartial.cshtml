@@ -5,14 +5,24 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Remove", "Delete", "TestCases", new { id = item.Id }, new { @class = "red" })
-            </td>
-        </tr>
-    }
+        using (Html.BeginForm("RemoveUser", "Projects"))
+        {
+            @Html.AntiForgeryToken()
 
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    <input type="submit" value="Remove" class="red sidebar__button--link" />
+                </td>
+                <td>
+                    @Html.Hidden("UserIdentifier", item.Id)
+                </td>
+                <td>
+                    @Html.Hidden("ProjectIdentifier", ViewData["ProjectId"])
+                </td>
+            </tr>
+        }
+    }
 </table>
