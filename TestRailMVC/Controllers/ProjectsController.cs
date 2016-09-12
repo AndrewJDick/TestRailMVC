@@ -204,10 +204,7 @@ namespace TestRailMVC.Controllers
             project.Users.Remove(user);
 
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Projects", new { id = ProjectIdentifier });
         }
-
-
-
     }
 }
