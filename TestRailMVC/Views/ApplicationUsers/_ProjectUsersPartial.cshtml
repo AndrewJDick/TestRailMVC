@@ -16,12 +16,8 @@
                 <td>
                     <input type="submit" value="Remove" class="red sidebar__button--link" />
                 </td>
-                <td>
-                    @Html.Hidden("UserIdentifier", item.Id)
-                </td>
-                <td>
-                    @Html.Hidden("ProjectIdentifier", ViewData["ProjectId"])
-                </td>
+                @Html.Hidden("UserIdentifier", item.Id)
+                @Html.Hidden("ProjectIdentifier", ViewData["ProjectId"])
             </tr>
         }
     }

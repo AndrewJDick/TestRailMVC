@@ -438,6 +438,12 @@ a {
   margin: 0.9375rem 0;
   padding: 25px;
   width: 100%; }
+  .sidebar__button--link {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+    cursor: pointer; }
 
 .sidebar__header {
   background: #555;

@@ -7,6 +7,14 @@
         margin: calculate-rem(15px) 0;
         padding: $default-module-padding;
         width: 100%;
+
+        &--link {
+            background:none!important;
+            border:none; 
+            padding:0!important;
+            font: inherit;
+            cursor: pointer;
+        }
     }
 
     &__header {
