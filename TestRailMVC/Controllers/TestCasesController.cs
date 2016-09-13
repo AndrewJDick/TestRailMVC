@@ -11,29 +11,23 @@ using TestRailMVC.Models;
 
 namespace TestRailMVC.Controllers
 {
-    public class TestCasesController : Controller
+    public class TestCasesController : UserBaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
-        // Determine whether User belongs to a Project that contains the Test Case
-        private bool IsUserAssignedToTestCase(TestCase testcase)
+        public TestCase GetTestCase(int? id)
         {
-            // Retrieve the current User
-            var userId = User.Identity.GetUserId();
-            ApplicationUser user = db.Users.Find(userId);
-
-            // Determine whether a user belongs to a project that contains the test case
-            if (testcase.Project.Users.Contains(user))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return CurrentUser.Projects.SelectMany(p => p.TestCases).SingleOrDefault(tc => tc.Id == id);
         }
 
+        public int RetrieveProjectId(int? id)
+        {
+            
+
+            return null;
+        }
+
+
         // GET: TestCases
+        // Unused
         public ActionResult Index()
         {
             return View(db.TestCases.ToList());
@@ -46,25 +40,15 @@ namespace TestRailMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TestCase testCase = db.TestCases.Find(id);
-            if (testCase == null)
+
+            if (GetTestCase(id) == null)
             {
                 return HttpNotFound();
             }
-            if (IsUserAssignedToTestCase(testCase))
-            {
-                return View(testCase);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-            }
+
+            return View(GetTestCase(id));
         }
 
-        public ActionResult MyNextAction()
-        {
-            return Redirect(Request.UrlReferrer.ToString());
-        }
 
         // GET: TestCases/Create
         public ActionResult Create(int? id)
@@ -116,20 +100,12 @@ namespace TestRailMVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            TestCase testCase = db.TestCases.Find(id);
-
-            if (testCase == null)
+            if (GetTestCase(id) == null)
             {
                 return HttpNotFound();
             }
-            if (IsUserAssignedToTestCase(testCase))
-            {
-                return View(testCase);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-            }
+
+            return View(GetTestCase(id));
         }
 
         // POST: TestCases/Edit/5

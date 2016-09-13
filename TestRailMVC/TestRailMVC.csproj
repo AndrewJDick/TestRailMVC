@@ -35,6 +35,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -175,6 +177,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\TestCasesController.cs" />
+    <Compile Include="Controllers\UserBaseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -325,6 +328,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\scss\components\" />
     <Folder Include="Content\scss\settings\" />
+    <Folder Include="Views\UserBase\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

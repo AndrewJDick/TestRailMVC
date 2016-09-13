@@ -12,72 +12,45 @@ using Microsoft.AspNet.Identity;
 
 namespace TestRailMVC.Controllers
 {
-    [Authorize]
-    public class ProjectsController : Controller
+    public class AuthenticatedBaseController : UserBaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         protected UserManager<ApplicationUser> UserManager { get; set; }
+    }
 
-        // Determine whether User belongs to a Project
-        private bool IsUserAssignedToProject(Project project)
+    [Authorize]
+    public class ProjectsController : AuthenticatedBaseController
+    {
+        public Project GetUserProject(int? id)
         {
-            // Retrieve the current User
-            var userId = User.Identity.GetUserId();
-            ApplicationUser user = db.Users.Find(userId);
-
-            // Determine whether a user belongs to a project
-            if (user.Projects.Contains(project))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            // Returns all projects assigned to the current logged in user.
+            // If it returns null, the user is not assigned to the project.
+            return CurrentUser.Projects.SingleOrDefault(p => p.Id == id);
         }
 
         // GET: Projects
         public ActionResult Index()
         {
-            // Determine the user currently logged in 
-            var userId = User.Identity.GetUserId();
-
-            // Find the first user in the database's User table whose primary key matches the userID
-            var user = db.Users.First((u) => u.Id == userId);
-
             // Return all Projects that the User has been added to
-            return View(user.Projects);
-
+            return View(CurrentUser.Projects);
         }
 
+        
         // GET: Projects/Details/5
         public ActionResult Details(int? id)
         {
-            // Passes the Project Id to the TestCase Create view
-            ViewData["ProjectId"] = id;
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Project project = db.Projects.Find(id);
-
-            if (project == null)
+            if (GetUserProject(id) == null)
             {
                 return HttpNotFound();
             }
 
-
-            if (IsUserAssignedToProject(project))
-            {
-                return View(project);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-            }
+            return View();
         }
+
 
         // GET: Projects/Create
         public ActionResult Create()
@@ -85,6 +58,7 @@ namespace TestRailMVC.Controllers
             return View();
         }
 
+    
         // POST: Projects/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -94,14 +68,8 @@ namespace TestRailMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Determine the user currently logged in 
-                var userId = User.Identity.GetUserId();
-
-                // Find the first user in the database's User table whose primary key matches the userID
-                var user = db.Users.First((u) => u.Id == userId);
-
                 // Automatically add the logged in user to the created project
-                user.Projects = new List<Project>() { project };
+                CurrentUser.Projects = new List<Project>() { project };
 
                 db.Projects.Add(project);
                 db.SaveChanges();
@@ -118,20 +86,13 @@ namespace TestRailMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
-            if (project == null)
+
+            if (GetUserProject(id) == null)
             {
                 return HttpNotFound();
             }
 
-            if (IsUserAssignedToProject(project))
-            {
-                return View(project);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-            }
+            return View();
         }
 
         // POST: Projects/Edit/5
@@ -157,20 +118,13 @@ namespace TestRailMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
-            if (project == null)
+
+            if (GetUserProject(id) == null)
             {
                 return HttpNotFound();
             }
 
-            if (IsUserAssignedToProject(project))
-            {
-                return View(project);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-            }
+            return View();
         }
 
         // POST: Projects/Delete/5

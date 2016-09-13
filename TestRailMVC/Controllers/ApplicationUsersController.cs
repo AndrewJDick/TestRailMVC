@@ -16,6 +16,9 @@ namespace TestRailMVC.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+       
+
+
         // GET: ApplicationUsers
         public ActionResult Index(int? id)
         {
