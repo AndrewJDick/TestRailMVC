@@ -13,16 +13,11 @@ namespace TestRailMVC.Controllers
 {
     public class TestCasesController : UserBaseController
     {
-        public TestCase GetTestCase(int? id)
+        // Compiles all test cases linked to the current user into a single list, then attempts to match the id parameter.
+        // Either returns the id, null if no id is found, and throws an exception if more than one is found. 
+        public TestCase UserAssociatedTestCase(int? id)
         {
             return CurrentUser.Projects.SelectMany(p => p.TestCases).SingleOrDefault(tc => tc.Id == id);
-        }
-
-        public int RetrieveProjectId(int? id)
-        {
-            
-
-            return null;
         }
 
 
@@ -33,6 +28,7 @@ namespace TestRailMVC.Controllers
             return View(db.TestCases.ToList());
         }
 
+
         // GET: TestCases/Details/5
         public ActionResult Details(int? id)
         {
@@ -41,12 +37,12 @@ namespace TestRailMVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            if (GetTestCase(id) == null)
+            if (UserAssociatedTestCase(id) == null)
             {
                 return HttpNotFound();
             }
 
-            return View(GetTestCase(id));
+            return View(UserAssociatedTestCase(id));
         }
 
 
@@ -55,7 +51,7 @@ namespace TestRailMVC.Controllers
         {   
             var projectId = id;
 
-            // Passes the Project Id to the TestCase Create view
+            // Passes the Project Id to a hidden field in the TestCase Create view
             ViewData["ProjectId"] = projectId;
 
             return View();
@@ -70,11 +66,8 @@ namespace TestRailMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Determine the project id where the test case was created
-                var projectId = ProjectIdentifier;
-
                 // Find the first project in the database's Projects table whose primary key matches the projectID
-                var project = db.Projects.First((p) => p.Id == projectId);
+                var project = db.Projects.First((p) => p.Id == ProjectIdentifier);
 
                 // Add the newly-created test case to the project
                 project.TestCases.Add(testCase);
@@ -100,12 +93,12 @@ namespace TestRailMVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            if (GetTestCase(id) == null)
+            if (UserAssociatedTestCase(id) == null)
             {
                 return HttpNotFound();
             }
 
-            return View(GetTestCase(id));
+            return View(UserAssociatedTestCase(id));
         }
 
         // POST: TestCases/Edit/5
@@ -133,19 +126,14 @@ namespace TestRailMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TestCase testCase = db.TestCases.Find(id);
-            if (testCase == null)
+
+            if (UserAssociatedTestCase(id) == null)
             {
                 return HttpNotFound();
+               
             }
-            if (IsUserAssignedToTestCase(testCase))
-            {
-                return View(testCase);
-            }
-            else
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
-            }
+
+            return View(UserAssociatedTestCase(id));
         }
 
         // POST: TestCases/Delete/5

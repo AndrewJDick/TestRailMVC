@@ -16,14 +16,12 @@ namespace TestRailMVC.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-       
-
-
         // GET: ApplicationUsers
-        public ActionResult Index(int? id)
+        public ActionResult Index(int id)
         {
+            int projectId = id; 
             // Passes the Project Id to a hidden field in the Add a User (Index) view
-            ViewData["ProjectId"] = id;
+            ViewData["ProjectId"] = projectId;
 
             return View(db.Users.ToList());
         }
@@ -34,18 +32,11 @@ namespace TestRailMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Determine the project id where the user was added, and the selected user
-                var projectId = ProjectIdentifier;
-                var userId = UserIdentifier;
+                // Find the first project in the database's Projects table whose primary key matches the project identifier
+                var project = db.Projects.First((p) => p.Id == ProjectIdentifier);
 
-                // Find the first project in the database's Projects table whose primary key matches the projectID
-                var project = db.Projects.First((p) => p.Id == projectId);
-
-                // Then find the user that is to be added
-                var user = db.Users.First((u) => u.Id == userId);
-
-                // Finally, add the user to the project
-                project.Users.Add(user);
+                // Finally, locate the user identifier in the database and add it to the project
+                project.Users.Add(db.Users.First((u) => u.Id == UserIdentifier));
 
                 db.SaveChanges();
                 return RedirectToAction("Details", "Projects", new { id = ProjectIdentifier });

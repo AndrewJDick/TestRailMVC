@@ -12,14 +12,12 @@ namespace TestRailMVC.Controllers
     {
         public ApplicationDbContext db = new ApplicationDbContext();
 
-        public ApplicationUser Goat
+        public ApplicationUser CurrentUser
         {
             get
             {
-                var userId =  User.Identity.GetUserId();
-                ApplicationUser user = db.Users.Find(userId);
-                return user;
+                return db.Users.Find(User.Identity.GetUserId());
             }
-        }  
+        }
     }
 }

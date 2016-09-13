@@ -328,7 +328,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\scss\components\" />
     <Folder Include="Content\scss\settings\" />
-    <Folder Include="Views\UserBase\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

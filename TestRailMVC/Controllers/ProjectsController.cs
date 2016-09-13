@@ -22,13 +22,12 @@ namespace TestRailMVC.Controllers
     {
         public Project GetUserProject(int? id)
         {
-            // Returns all projects assigned to the current logged in user.
-            // If it returns null, the user is not assigned to the project.
+            // Either returns the project (confirming the user belongs to the project), null, or an exception if multiple id's are found. 
             return CurrentUser.Projects.SingleOrDefault(p => p.Id == id);
         }
 
         // GET: Projects
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             // Return all Projects that the User has been added to
             return View(CurrentUser.Projects);
@@ -37,7 +36,10 @@ namespace TestRailMVC.Controllers
         
         // GET: Projects/Details/5
         public ActionResult Details(int? id)
-        {
+        {            
+            // Passes the Project Id to a hidden field in the Project User partial view
+            ViewData["ProjectId"] = id;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -48,7 +50,7 @@ namespace TestRailMVC.Controllers
                 return HttpNotFound();
             }
 
-            return View();
+            return View(GetUserProject(id));
         }
 
 
@@ -92,7 +94,7 @@ namespace TestRailMVC.Controllers
                 return HttpNotFound();
             }
 
-            return View();
+            return View(GetUserProject(id));
         }
 
         // POST: Projects/Edit/5
@@ -124,7 +126,7 @@ namespace TestRailMVC.Controllers
                 return HttpNotFound();
             }
 
-            return View();
+            return View(GetUserProject(id));
         }
 
         // POST: Projects/Delete/5
@@ -132,7 +134,7 @@ namespace TestRailMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Project project = db.Projects.Find(id);
+            Project project = GetUserProject(id);
             db.Projects.Remove(project);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -152,7 +154,7 @@ namespace TestRailMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RemoveUser(int ProjectIdentifier, string UserIdentifier)
         {
-            Project project = db.Projects.Find(ProjectIdentifier);
+            Project project = CurrentUser.Projects.FirstOrDefault(p => p.Id == ProjectIdentifier);
             ApplicationUser user = db.Users.Find(UserIdentifier);
 
             project.Users.Remove(user);
