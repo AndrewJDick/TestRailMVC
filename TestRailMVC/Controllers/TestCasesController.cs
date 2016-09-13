@@ -105,11 +105,19 @@ namespace TestRailMVC.Controllers
         // GET: TestCases/Edit/5
         public ActionResult Edit(int? id)
         {
+            var tc = db.TestCases.First(t => t.Id == id );
+            var projectId = tc.Project.Id;
+
+            // Passes the Project Id to the TestCase Create view
+            ViewData["ProjectId"] = projectId;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             TestCase testCase = db.TestCases.Find(id);
+
             if (testCase == null)
             {
                 return HttpNotFound();
@@ -129,14 +137,15 @@ namespace TestRailMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Priority,Precondition,Step,Status,Comment")] TestCase testCase)
+        public ActionResult Edit([Bind(Include = "Id,Title,Priority,Precondition,Step,Status,Comment")] TestCase testCase, int ProjectIdentifier)
         {
+
             if (ModelState.IsValid)
             {
                 db.Entry(testCase).State = EntityState.Modified;
                 db.SaveChanges();
-                // TODO - Redirect user to the project the test cases belongs to, rather than the dashboard.
-                return RedirectToAction("Index", "Projects");
+                // Redirect user to the project details
+                return RedirectToAction("Details", "Projects", new { id = ProjectIdentifier });
             }
             return View(testCase.Project.Id);
         }
@@ -169,9 +178,12 @@ namespace TestRailMVC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             TestCase testCase = db.TestCases.Find(id);
+            var projectId = testCase.Project.Id;
+                 
             db.TestCases.Remove(testCase);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            // Redirect user to the project details
+            return RedirectToAction("Details", "Projects", new { id = projectId });
         }
 
         protected override void Dispose(bool disposing)
@@ -184,3 +196,4 @@ namespace TestRailMVC.Controllers
         }
     }
 }
+
