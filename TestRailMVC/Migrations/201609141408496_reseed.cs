@@ -3,7 +3,7 @@ namespace TestRailMVC.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class seed : DbMigration
+    public partial class reseed : DbMigration
     {
         public override void Up()
         {
@@ -27,7 +27,7 @@ namespace TestRailMVC.Migrations
                         Priority = c.Int(nullable: false),
                         Precondition = c.String(),
                         Step = c.String(),
-                        Status = c.String(),
+                        Status = c.Int(nullable: false),
                         Comment = c.String(),
                         Project_Id = c.Int(),
                     })

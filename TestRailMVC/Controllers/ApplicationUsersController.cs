@@ -12,14 +12,13 @@ using Microsoft.AspNet.Identity;
 
 namespace TestRailMVC.Controllers
 {
-    public class ApplicationUsersController : Controller
+    public class ApplicationUsersController : UserBaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET: ApplicationUsers
         public ActionResult Index(int id)
         {
             int projectId = id; 
+
             // Passes the Project Id to a hidden field in the Add a User (Index) view
             ViewData["ProjectId"] = projectId;
 
@@ -35,10 +34,12 @@ namespace TestRailMVC.Controllers
                 // Find the first project in the database's Projects table whose primary key matches the project identifier
                 var project = db.Projects.First((p) => p.Id == ProjectIdentifier);
 
-                // Finally, locate the user identifier in the database and add it to the project
+                // Locate the user identifier in the database and add it to the project
                 project.Users.Add(db.Users.First((u) => u.Id == UserIdentifier));
 
                 db.SaveChanges();
+
+                // Redirect to Project Details page
                 return RedirectToAction("Details", "Projects", new { id = ProjectIdentifier });
             }
 
@@ -52,12 +53,13 @@ namespace TestRailMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);
-            if (applicationUser == null)
+
+            // Logged in user can only view their own personal details.
+            if (CurrentUser.Id != id)
             {
                 return HttpNotFound();
             }
-            return View(applicationUser);
+            return View(CurrentUser);
         }
 
         // GET: ApplicationUsers/Create
@@ -90,12 +92,13 @@ namespace TestRailMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(id);
-            if (applicationUser == null)
+            
+            // Logged in user can only edit their own personal details.
+            if (CurrentUser.Id != id)
             {
                 return HttpNotFound();
             }
-            return View(applicationUser);
+            return View(CurrentUser);
         }
 
         // POST: ApplicationUsers/Edit/5

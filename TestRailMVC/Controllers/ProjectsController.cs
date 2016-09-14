@@ -22,7 +22,7 @@ namespace TestRailMVC.Controllers
     {
         public Project GetUserProject(int? id)
         {
-            // Either returns the project (confirming the user belongs to the project), null, or an exception if multiple id's are found. 
+            // Either returns the project (confirming the user belongs to the it), null, or an exception if multiple id's are found. 
             return CurrentUser.Projects.SingleOrDefault(p => p.Id == id);
         }
 
@@ -134,7 +134,8 @@ namespace TestRailMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Project project = GetUserProject(id);
+            Project project = db.Projects.Find(id);
+
             db.Projects.Remove(project);
             db.SaveChanges();
             return RedirectToAction("Index");

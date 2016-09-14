@@ -8,6 +8,7 @@ namespace TestRailMVC.Migrations
     using System.Data.Entity.Validation;
     using System.Diagnostics;
     using System.Linq;
+    using System.Web.Mvc;
     using TestRailMVC.Models; // Added to access our model resources.
 
     internal sealed class Configuration : DbMigrationsConfiguration<TestRailMVC.Models.ApplicationDbContext>
@@ -86,10 +87,8 @@ namespace TestRailMVC.Migrations
             {
                 Id = 1,
                 Title = "Left clicking on the main logo redirects to homepage",
-                Priority = 2,
                 Precondition = "",
                 Step = "Left click on the main logo on any page",
-                Status = "Pass",
                 Comment = ""
             };
 
@@ -97,10 +96,8 @@ namespace TestRailMVC.Migrations
             {
                 Id = 2,
                 Title = "Google map renders on the Where we Are page and shows the office location",
-                Priority = 3,
                 Precondition = "Some random precondition that I can't think of at this moment in time",
                 Step = "Navigate to Where we are. Observe map.",
-                Status = "Fail",
                 Comment = "Map renders but the location is incorrect"
             };
 
@@ -108,10 +105,8 @@ namespace TestRailMVC.Migrations
             {
                 Id = 3,
                 Title = "Custom fonts display correctly",
-                Priority = 5,
                 Precondition = "",
                 Step = "",
-                Status = "",
                 Comment = ""
             };
 

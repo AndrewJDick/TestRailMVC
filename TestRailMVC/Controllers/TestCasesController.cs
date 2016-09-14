@@ -14,7 +14,7 @@ namespace TestRailMVC.Controllers
     public class TestCasesController : UserBaseController
     {
         // Compiles all test cases linked to the current user into a single list, then attempts to match the id parameter.
-        // Either returns the id, null if no id is found, and throws an exception if more than one is found. 
+        // Either returns the id, null, or throws an exception if more than one is found. 
         public TestCase UserAssociatedTestCase(int? id)
         {
             return CurrentUser.Projects.SelectMany(p => p.TestCases).SingleOrDefault(tc => tc.Id == id);
@@ -22,7 +22,6 @@ namespace TestRailMVC.Controllers
 
 
         // GET: TestCases
-        // Unused
         public ActionResult Index()
         {
             return View(db.TestCases.ToList());
@@ -82,10 +81,10 @@ namespace TestRailMVC.Controllers
         // GET: TestCases/Edit/5
         public ActionResult Edit(int? id)
         {
-            var tc = db.TestCases.First(t => t.Id == id );
-            var projectId = tc.Project.Id;
+            var testcase = UserAssociatedTestCase(id);
 
-            // Passes the Project Id to the TestCase Create view
+            // Passes the Project Id to the TestCase Edit view
+            var projectId = testcase.Project.Id;
             ViewData["ProjectId"] = projectId;
 
             if (id == null)
@@ -113,7 +112,7 @@ namespace TestRailMVC.Controllers
             {
                 db.Entry(testCase).State = EntityState.Modified;
                 db.SaveChanges();
-                // Redirect user to the project details
+                // Redirect user to the project details page
                 return RedirectToAction("Details", "Projects", new { id = ProjectIdentifier });
             }
             return View(testCase.Project.Id);

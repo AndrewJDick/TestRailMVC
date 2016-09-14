@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace TestRailMVC.Models
 {
@@ -21,7 +22,7 @@ namespace TestRailMVC.Models
         public string Title { get; set; }
 
         [Display(Name = "Priority")]
-        public int Priority { get; set; }
+        public Priority Priority { get; set; }
 
         [Display(Name = "Preconditions")]
         [DataType(DataType.MultilineText)]
@@ -32,8 +33,7 @@ namespace TestRailMVC.Models
         public string Step { get; set; }
 
         [Display(Name = "Status")]
-        [DataType(DataType.Text)]
-        public string Status { get; set; }
+        public Status Status { get; set; }
 
         [Display(Name = "Comment")]
         [DataType(DataType.MultilineText)]
@@ -41,5 +41,20 @@ namespace TestRailMVC.Models
 
         // One to many relationship with Project
         public virtual Project Project { get; set; }
-    }         
+    }
+    
+    public enum Status
+    { 
+        Pass = 1, 
+        Fail = 2, 
+        Blocked = 3,
+        Invalid = 4
+    }
+
+    public enum Priority
+    {
+        High = 1,
+        Normal = 2,
+        Low = 3,
+    }
 }
