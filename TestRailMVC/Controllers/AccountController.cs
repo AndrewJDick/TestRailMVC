@@ -151,7 +151,7 @@ namespace TestRailMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { Forename = model.Forename, Surname = model.Surname, UserName = model.Forename + ' ' + model.Surname, Email = model.Email };
+                var user = new ApplicationUser { Forename = model.Forename, Surname = model.Surname, UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -163,7 +163,7 @@ namespace TestRailMVC.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Projects");
                 }
                 AddErrors(result);
             }
@@ -369,7 +369,7 @@ namespace TestRailMVC.Controllers
                 }
                 var user = new ApplicationUser
                 {
-                    UserName = model.Forename + ' ' + model.Surname,
+                    UserName = model.Email,
                     Email = model.Email,
                     Forename = model.Forename,
                     Surname = model.Surname

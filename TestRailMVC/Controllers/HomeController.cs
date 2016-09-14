@@ -14,7 +14,8 @@ namespace TestRailMVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            // No landing page exists, so we'll redirect to Project Dashboard
+            return RedirectToAction("Index", "Projects");
         }
 
         public ActionResult Contact()
