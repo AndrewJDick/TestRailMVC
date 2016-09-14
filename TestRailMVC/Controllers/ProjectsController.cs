@@ -134,7 +134,7 @@ namespace TestRailMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Project project = db.Projects.SingleOrDefault(x => x.Id == id);
+            Project project = db.Projects.Include("TestCases").SingleOrDefault(x => x.Id == id);
             
             db.Projects.Remove(project);
 
