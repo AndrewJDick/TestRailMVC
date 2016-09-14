@@ -2,5 +2,10 @@
     background-color: $grey-light;
     display: flex;
     flex-direction: column;
+    height: auto;
     padding: $default-module-padding;
+
+    @media only screen and (min-width : 992px) {
+        height: 100%;
+    }
 }

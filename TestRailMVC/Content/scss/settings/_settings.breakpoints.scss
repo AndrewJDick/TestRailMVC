@@ -1,0 +1,8 @@
+﻿$breakpoints: (
+    'palm'          'screen and (max-width: 767px)',
+    'lap'           'screen and (min-width: 768px) and (max-width: 1024px)',
+    'lap-and-up'    'screen and (min-width: 768px)',
+    'portable'      'screen and (max-width: 1024px)',
+    'desk'          'screen and (min-width: 1025px)',
+    'desk-wide'     'screen and (min-width: 1200px)',
+);

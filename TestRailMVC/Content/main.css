@@ -379,6 +379,7 @@ header {
   align-items: center;
   background-color: #4388CC;
   display: flex;
+  height: 10vh;
   margin: 0; }
 
 h1 {
@@ -395,12 +396,15 @@ aside {
   background-color: #999;
   display: flex;
   flex-direction: column;
+  height: auto;
   padding: 25px; }
+  @media only screen and (min-width: 992px) {
+    aside {
+      height: 100%; } }
 
 main {
   border-left: 0.0625rem solid #000;
-  display: flex;
-  align-items: stretch; }
+  display: flex; }
 
 textarea {
   max-width: 90%; }
@@ -410,6 +414,7 @@ textarea {
 footer {
   align-items: center;
   background-color: #000;
+  height: 5vh;
   justify-content: center;
   display: flex; }
 
@@ -420,11 +425,21 @@ a {
     text-decoration: none;
     font-weight: 400; }
 
-.page__title {
-  align-items: center;
-  background-color: #555;
-  display: flex;
-  margin-bottom: 1.5625rem; }
+.page {
+  height: auto; }
+  @media only screen and (min-width: 992px) {
+    .page {
+      height: 600px; } }
+  .page__title {
+    align-items: center;
+    background-color: #555;
+    display: flex;
+    margin-bottom: 1.5625rem; }
+  .page__dashboard {
+    min-height: 50vh; }
+    @media only screen and (min-width: 769px) {
+      .page__dashboard {
+        min-height: 0; } }
 
 .footer__copy {
   color: #fff;
@@ -470,4 +485,7 @@ a {
 
 .txt-ctr {
   text-align: center; }
+
+.navbar-brand {
+  padding-left: 2.5rem; }
 

@@ -27,37 +27,41 @@
         </div>
     </div>
     <div class="container body-content">
-        <header class="wrapper">
+        <header class="wrapper row">
             <h1> Entity Framework Demo </h1>
         </header>
         
-        <main style="min-height: 600px;">
-            <div class="col-md-9">
-                <div class="row page__title wrapper">
-                    <h2>@ViewBag.Title</h2>
-                </div> 
+        <main class="row">
+            <div class="container">
+                <div class="row page">
+                    <div class="col-xs-12 col-md-9">
+                        <div class="row page__title wrapper">
+                            <h2>@ViewBag.Title</h2>
+                        </div> 
                 
-                <div class="row wrapper">
-                    @RenderBody()
+                        <div class="row wrapper page__dashboard">
+                            @RenderBody()
+                        </div>
+                    </div>
+            
+                    <aside class="col-xs-12 col-md-3">
+                        <div>
+                            @RenderSection("SidebarProjectDashboard", required: false)
+                        </div>
+
+                        <div>
+                            @RenderSection("SidebarProjectDetails", required: false)
+                        </div>
+
+                        <div>
+                            @RenderSection("SidebarProjectUsers", required: false)
+                        </div>
+                    </aside>
                 </div>
             </div>
-            
-            <aside class="col-md-3">
-                <div>
-                    @RenderSection("SidebarProjectDashboard", required: false)
-                </div>
-
-                <div>
-                    @RenderSection("SidebarProjectDetails", required: false)
-                </div>
-
-                <div>
-                    @RenderSection("SidebarProjectUsers", required: false)
-                </div>
-            </aside>
         </main>
 
-        <footer>
+        <footer class="row">
             <p class="footer__copy">&copy; @DateTime.Now.Year - Cohaesus Projects Ltd</p>
         </footer>
     </div>

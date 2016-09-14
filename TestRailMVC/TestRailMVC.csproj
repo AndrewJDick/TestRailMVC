@@ -235,6 +235,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\scss\settings\_settings.breakpoints.scss" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -311,7 +312,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\scss\components\" />
-    <Folder Include="Content\scss\settings\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

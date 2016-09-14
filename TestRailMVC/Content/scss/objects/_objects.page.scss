@@ -1,9 +1,22 @@
 ﻿.page {
+    height: auto;
+
+    @media only screen and (min-width : 992px) {
+        height: 600px;
+    }
 
     &__title {
         align-items: center;
         background-color: $grey-dark;
         display: flex;
         margin-bottom: calculate-rem($default-module-padding);
+    }
+
+    &__dashboard {
+        min-height: 50vh;
+
+        @media only screen and (min-width : 769px) {
+            min-height: 0;
+        }
     }
 }
