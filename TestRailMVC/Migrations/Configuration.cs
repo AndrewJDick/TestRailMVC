@@ -24,28 +24,28 @@ namespace TestRailMVC.Migrations
             var u1 = new ApplicationUser()
             {
                 Id = "1",
-                Forename = "Richard",
-                Surname = "Bundock",
-                Email = "richard.bundock@cohaesus.co.uk",
-                UserName = "Richard Bundock"
+                Forename = "Test",
+                Surname = "User1",
+                Email = "testuser1@cohaesus.co.uk",
+                UserName = "testuser1@cohaesus.co.uk"
             };
 
             var u2 = new ApplicationUser()
             {
                 Id = "2",
-                Forename = "Phil",
-                Surname = "Beaman",
-                Email = "philip.beaman@cohaesus.co.uk",
-                UserName = "Phil Beaman"
+                Forename = "Test",
+                Surname = "User2",
+                Email = "testuser2@cohaesus.co.uk",
+                UserName = "testuser2@cohaesus.co.uk"
             };
 
             var u3 = new ApplicationUser()
             {
                 Id = "3",
-                Forename = "Matt",
-                Surname = "Meckes",
-                Email = "matt.meckes@cohaesus.co.uk",
-                UserName = "Matt Meckes"
+                Forename = "Test",
+                Surname = "User3",
+                Email = "testuser3@cohaesus.co.uk",
+                UserName = "testuser3@cohaesus.co.uk"
             };
 
             var u4 = new ApplicationUser()
@@ -54,32 +54,32 @@ namespace TestRailMVC.Migrations
                 Forename = "Andrew",
                 Surname = "Dick",
                 Email = "andrew.dick@cohaesus.co.uk",
-                UserName = "Andrew Dick"
+                UserName = "andrew.dick@cohaesus.co.uk"
             };
 
 
             var p1 = new Project()
             {
                 Id = 1,
-                Name = "WWF Endangered Emoji",
-                Code = "281MM134",
-                Description = "Allows users to tweet a series of emoji associated based on endangered species."
+                Name = "Test Project 1",
+                Code = "281TP134",
+                Description = "A Facebook App that allows users to donate to charity"
             };
 
             var p2 = new Project()
             {
                 Id = 2,
-                Name = "Majestic Wine App",
-                Code = "198RB001",
-                Description = "A Xamarin-based app that allows customers to purchase wine"
+                Name = "Test Project 2",
+                Code = "198TP001",
+                Description = "A Xamarin-based app that allows customers to purchase pc components"
             };
 
             var p3 = new Project()
             {
                 Id = 3,
-                Name = "Workspace Annual Report",
-                Code = "341SB011",
-                Description = "A digital annual report for the Workspace Group"
+                Name = "Test Project 3",
+                Code = "341TP011",
+                Description = "A digital annual report for the Test Project group"
             };
 
 
@@ -96,7 +96,7 @@ namespace TestRailMVC.Migrations
             {
                 Id = 2,
                 Title = "Google map renders on the Where we Are page and shows the office location",
-                Precondition = "Some random precondition that I can't think of at this moment in time",
+                Precondition = "Internet Explorer 10 and above",
                 Step = "Navigate to Where we are. Observe map.",
                 Comment = "Map renders but the location is incorrect"
             };
